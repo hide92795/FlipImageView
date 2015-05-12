@@ -15,7 +15,6 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import fr.castorflex.android.flipimageview.R;
 import fr.castorflex.android.flipimageview.library.FlipImageView;
 
 public class SampleActivity extends Activity implements FlipImageView.OnFlipListener,
@@ -53,7 +52,7 @@ public class SampleActivity extends Activity implements FlipImageView.OnFlipList
     private CheckBox mCheckBoxY;
 
     private CheckBox mCheckBoxZ;
-    
+
     private CheckBox mCheckBoxReverse;
 
     private TextView mTextViewAnimationListener;

@@ -1,4 +1,4 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 dependencies {
     compile project(':Library')
@@ -6,21 +6,14 @@ dependencies {
 
 
 android {
-    compileSdkVersion 17
-  	buildToolsVersion '17'
-  
+    compileSdkVersion 22
+    buildToolsVersion '22'
+
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 17
-
+    	applicationId "fr.castorflex.android.flipimageview.sample"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
     }
-    
-    sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            res.srcDirs = ['res']
-        }
-    }
-
 }
