@@ -19,9 +19,9 @@ import fr.castorflex.android.flipimageview.R;
 /**
  * Created with IntelliJ IDEA. User: castorflex Date: 30/12/12 Time: 16:25
  */
-public class FlipImageView extends ImageView implements View.OnClickListener,
-        Animation.AnimationListener {
+public class FlipImageView extends ImageView implements View.OnClickListener, Animation.AnimationListener {
 
+    @SuppressWarnings("PointlessBitwiseExpression")
     private static final int FLAG_ROTATION_X = 1 << 0;
 
     private static final int FLAG_ROTATION_Y = 1 << 1;
@@ -29,17 +29,6 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     private static final int FLAG_ROTATION_Z = 1 << 2;
 
     private static final Interpolator fDefaultInterpolator = new DecelerateInterpolator();
-
-    private static int sDefaultDuration;
-
-    private static int sDefaultRotations;
-
-    private static boolean sDefaultAnimated;
-
-    private static boolean sDefaultFlipped;
-
-    private static boolean sDefaultIsRotationReversed;
-
 
     public interface OnFlipListener {
 
@@ -67,8 +56,8 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     private boolean mIsRotationYEnabled;
 
     private boolean mIsRotationZEnabled;
-	
-	private boolean mIsFlipping;
+
+    private boolean mIsFlipping;
 
     private boolean mIsRotationReversed;
 
@@ -88,11 +77,11 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     }
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
-        sDefaultDuration = context.getResources().getInteger(R.integer.default_fiv_duration);
-        sDefaultRotations = context.getResources().getInteger(R.integer.default_fiv_rotations);
-        sDefaultAnimated = context.getResources().getBoolean(R.bool.default_fiv_isAnimated);
-        sDefaultFlipped = context.getResources().getBoolean(R.bool.default_fiv_isFlipped);
-        sDefaultIsRotationReversed = context.getResources().getBoolean(R.bool.default_fiv_isRotationReversed);
+        int sDefaultDuration = context.getResources().getInteger(R.integer.default_fiv_duration);
+        int sDefaultRotations = context.getResources().getInteger(R.integer.default_fiv_rotations);
+        boolean sDefaultAnimated = context.getResources().getBoolean(R.bool.default_fiv_isAnimated);
+        boolean sDefaultFlipped = context.getResources().getBoolean(R.bool.default_fiv_isFlipped);
+        boolean sDefaultIsRotationReversed = context.getResources().getBoolean(R.bool.default_fiv_isRotationReversed);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FlipImageView, defStyle, 0);
         mIsDefaultAnimated = a.getBoolean(R.styleable.FlipImageView_isAnimated, sDefaultAnimated);
@@ -123,23 +112,36 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         a.recycle();
     }
 
-    public void setFlippedDrawable(Drawable flippedDrawable){
+    @SuppressWarnings("UnusedDeclaration")
+    public void setFlippedDrawable(Drawable flippedDrawable) {
         mFlippedDrawable = flippedDrawable;
-        if(mIsFlipped) setImageDrawable(mFlippedDrawable);
+        if (mIsFlipped) {
+            setImageDrawable(mFlippedDrawable);
+        }
     }
 
-    public void setDrawable(Drawable drawable){
+    @SuppressWarnings("UnusedDeclaration")
+
+    public void setDrawable(Drawable drawable) {
         mDrawable = drawable;
-        if(!mIsFlipped) setImageDrawable(mDrawable);
+        if (!mIsFlipped) {
+            setImageDrawable(mDrawable);
+        }
     }
+
+    @SuppressWarnings("UnusedDeclaration")
 
     public boolean isRotationXEnabled() {
         return mIsRotationXEnabled;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
+
     public void setRotationXEnabled(boolean enabled) {
         mIsRotationXEnabled = enabled;
     }
+
+    @SuppressWarnings("UnusedDeclaration")
 
     public boolean isRotationYEnabled() {
         return mIsRotationYEnabled;
@@ -149,6 +151,8 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         mIsRotationYEnabled = enabled;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
+
     public boolean isRotationZEnabled() {
         return mIsRotationZEnabled;
     }
@@ -156,6 +160,8 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     public void setRotationZEnabled(boolean enabled) {
         mIsRotationZEnabled = enabled;
     }
+
+    @SuppressWarnings("UnusedDeclaration")
 
     public FlipAnimator getFlipAnimation() {
         return mAnimation;
@@ -173,15 +179,19 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         return mIsFlipped;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
+
     public boolean isFlipping() {
         return mIsFlipping;
     }
 
-    public boolean isRotationReversed(){
+    @SuppressWarnings("UnusedDeclaration")
+
+    public boolean isRotationReversed() {
         return mIsRotationReversed;
     }
 
-    public void setRotationReversed(boolean rotationReversed){
+    public void setRotationReversed(boolean rotationReversed) {
         mIsRotationReversed = rotationReversed;
     }
 
@@ -189,9 +199,13 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         return mIsDefaultAnimated;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
+
     public void setAnimated(boolean animated) {
         mIsDefaultAnimated = animated;
     }
+
+    @SuppressWarnings("UnusedDeclaration")
 
     public void setFlipped(boolean flipped) {
         setFlipped(flipped, mIsDefaultAnimated);
@@ -236,7 +250,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         if (mListener != null) {
             mListener.onFlipStart(this);
         }
-		mIsFlipping = true;
+        mIsFlipping = true;
     }
 
     @Override
@@ -244,7 +258,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         if (mListener != null) {
             mListener.onFlipEnd(this);
         }
-		mIsFlipping = false;
+        mIsFlipping = false;
     }
 
     @Override
@@ -290,9 +304,9 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
             // calculated both in radians and in the equivalent degrees.
             final double radians = Math.PI * interpolatedTime;
             float degrees = (float) (180.0 * radians / Math.PI);
-            
-            if(mIsRotationReversed){ 
-            	degrees = -degrees;
+
+            if (mIsRotationReversed) {
+                degrees = -degrees;
             }
 
             // Once we reach the midpoint in the animation, we need to hide the
@@ -301,7 +315,11 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
             // flipped around. This is the main problem with SDK sample, it does not
             // do this.
             if (interpolatedTime >= 0.5f) {
-            	if(mIsRotationReversed){ degrees += 180.f; } else{ degrees -= 180.f; }
+                if (mIsRotationReversed) {
+                    degrees += 180.f;
+                } else {
+                    degrees -= 180.f;
+                }
 
                 if (!visibilitySwapped) {
                     setImageDrawable(toDrawable);
