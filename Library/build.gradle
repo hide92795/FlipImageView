@@ -1,9 +1,11 @@
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply from: 'maven-push.gradle'
 
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
-	  defaultConfig {
+    defaultConfig {
         minSdkVersion 15
         targetSdkVersion 22
     }

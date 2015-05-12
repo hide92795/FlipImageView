@@ -1,0 +1,15 @@
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'fr.castorflex.android.fork'
+            artifactId 'flipimageview'
+            version '1.0.1'
+            artifact source: file("${project.buildDir}/outputs/aar/Library-release.aar")
+        }
+    }
+    repositories {
+        maven {
+            url "file:${rootDir}/maven-repo"
+        }
+    }
+}
